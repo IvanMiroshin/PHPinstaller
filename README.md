@@ -19,8 +19,8 @@ bash phpinstaller
 
 **What the script does:**
 
-At startup, it asks what php versions you want to build (the version needs to be entered completely. For example, 7.1.2, 
-not 7.1. You can enter several versions with a space), whether to create a symlink on the php-cgi binary in `/usr/bin` 
+At startup, it asks what php versions you want to build (the version needs to be entered completely. For example, 7.2.22, 
+not 7.2. You can enter several versions with a space), whether to create a symlink on the php-cgi binary in `/usr/bin` 
 for quick access.
 
 At the first start, it asks whether to add dependencies. If you refuse to install dependencies, then you need to 
