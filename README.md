@@ -28,7 +28,7 @@ install them yourself. Otherwise, you will get errors during assembly. Subsequen
 understand that the script is trying to put all the possible dependencies, but different distributions may use different 
 packages or when using custom compilation flags, you may need to install something.
 
-Parses http://php.net/downloads.php for the presence of a bz2 archive with the source code of the php version specified 
+Parses https://www.php.net/downloads.php and https://www.php.net/releases/ for the presence of a bz2 archive with the source code of the php version specified 
 by the user. If it finds, downloads and unpacks the sources in `/opt/php/src`.
 
 You can also put archives with sources in `/opt/php/src/bzips`, then the script will not download them.
