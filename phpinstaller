@@ -51,11 +51,11 @@ sleep 5
 if ! [ -d /opt/php/src/php-$ver ]; then
  if ! [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
  	#Download src php
- 	link=`curl https://www.php.net/distributions/php-|grep $ver.tar.bz2|cut -d '"' -f2`
+ 	link=`curl https://www.php.net/releases/|grep $ver.tar.bz2|cut -d '"' -f2`
  	if [[ $link = "" ]]
  	then
- 		link=`curl https://php.net/downloads.php|grep $ver.tar.bz2|cut -d '"' -f2`
- 		link=`echo "https://php.net"$link`
+ 		link=`curl https://www.php.net/downloads.php|grep $ver.tar.bz2|cut -d '"' -f2`
+ 		link=`echo "https://www.php.net"$link`
 		links=`curl $link|grep $ver.tar.bz2|cut -d '"' -f4`
 			for link in $links; do
 			wget -O /opt/php/src/bzips/php-$ver.tar.bz2 $link
@@ -67,7 +67,7 @@ if ! [ -d /opt/php/src/php-$ver ]; then
  		l1=`echo $link| sed 's/^\(.\).*/\1/'`
  		if [ $l1 = "/" ]
  		then
- 			link=`echo "https://php.net"$link`
+ 			link=`echo "https://www.php.net"$link`
 			links=`curl $link|grep $ver.tar.bz2|cut -d '"' -f4`
                         for link in $links; do
                         wget -O /opt/php/src/bzips/php-$ver.tar.bz2 $link
