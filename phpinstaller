@@ -51,7 +51,7 @@ sleep 5
 if ! [ -d /opt/php/src/php-$ver ]; then
  if ! [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
  	#Download src php
- 	link=`curl https://php.net/distributions/php-|grep $ver.tar.bz2|cut -d '"' -f2`
+ 	link=`curl https://www.php.net/distributions/php-|grep $ver.tar.bz2|cut -d '"' -f2`
  	if [[ $link = "" ]]
  	then
  		link=`curl https://php.net/downloads.php|grep $ver.tar.bz2|cut -d '"' -f2`
