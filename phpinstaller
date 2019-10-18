@@ -50,46 +50,47 @@ echo "Start install PHP" $ver
 sleep 5
 if ! [ -d /opt/php/src/php-$ver ]; then
  if ! [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
- 	#Download src php
- 	link=`curl https://www.php.net/releases/|grep $ver.tar.bz2|cut -d '"' -f2`
- 	if [[ $link = "" ]]
- 	then
- 		link=`curl https://www.php.net/downloads.php|grep $ver.tar.bz2|cut -d '"' -f2`
- 		link=`echo "https://www.php.net"$link`
-		links=`curl $link|grep $ver.tar.bz2|cut -d '"' -f4`
-			for link in $links; do
-			wget -O /opt/php/src/bzips/php-$ver.tar.bz2 $link
-			if [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
-				break
-			fi
-			done
- 	else
- 		l1=`echo $link| sed 's/^\(.\).*/\1/'`
- 		if [ $l1 = "/" ]
- 		then
- 			link=`echo "https://www.php.net"$link`
-			links=`curl $link|grep $ver.tar.bz2|cut -d '"' -f4`
-                        for link in $links; do
-                        wget -O /opt/php/src/bzips/php-$ver.tar.bz2 $link
-                        if [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
-                                break
-                        fi
-                        done
- 		fi
- 	fi
-	if ! [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
-	 	wget -O /opt/php/src/bzips/php-$ver.tar.bz2 $link
-	fi
- 	if ! [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
- 		echo "PHP ${ver} not found"
- 		echo "Please check correct version and re-run script"
- 		exit 0
- 	fi
-	tar xjf /opt/php/src/bzips/php-$ver.tar.bz2 -C /opt/php/src/
+        #Download src php
+        link=`curl https://www.php.net/releases/|grep $ver.tar.bz2|cut -d '"' -f2`
+
+        if [[ $link = "" ]]
+        then
+                link=`curl https://www.php.net/downloads.php|grep $ver.tar.bz2|cut -d '"' -f2`
+        fi
+
+        if [[ $link = "" ]]
+        then
+                echo "PHP ${ver} not found"
+                echo "Please check correct version and re-run script"
+                exit 0
+        fi
+
+        l1=`echo $link| sed 's/^\(.\).*/\1/'`
+        if [ $l1 = "/" ]
+        then
+                link=`echo "https://www.php.net"$link`
+                links=`curl $link|grep $ver.tar.bz2|cut -d '"' -f4`
+                for link in $links; do
+                wget -O /opt/php/src/bzips/php-$ver.tar.bz2 $link
+                if [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
+                        break
+                fi
+                done
+        fi
+
+        if ! [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
+                wget -O /opt/php/src/bzips/php-$ver.tar.bz2 $link
+        fi
+        if ! [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
+                echo "PHP ${ver} not found"
+                echo "Please check correct version and re-run script"
+                exit 0
+        fi
+        tar xjf /opt/php/src/bzips/php-$ver.tar.bz2 -C /opt/php/src/
         mkdir /opt/php/php-$ver > /dev/null 2>&1
  else
- 	tar xjf /opt/php/src/bzips/php-$ver.tar.bz2 -C /opt/php/src/
- 	mkdir /opt/php/php-$ver > /dev/null 2>&1
+        tar xjf /opt/php/src/bzips/php-$ver.tar.bz2 -C /opt/php/src/
+        mkdir /opt/php/php-$ver > /dev/null 2>&1
  fi
 fi
 
