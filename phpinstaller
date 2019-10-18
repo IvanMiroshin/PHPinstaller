@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 echo "You can enter multiple versions through 'space'."
-echo "Enter php version/versions(for example 5.6.30):"
+echo "Enter php version/versions(for example 7.2.22):"
 read -p ">" vers
 echo "Create simlinks in /usr/bin?(y/N)"
 read -p ">" item1
@@ -51,11 +51,11 @@ sleep 5
 if ! [ -d /opt/php/src/php-$ver ]; then
  if ! [ -f /opt/php/src/bzips/php-$ver.tar.bz2 ]; then
  	#Download src php
- 	link=`curl http://php.net/releases/|grep $ver.tar.bz2|cut -d '"' -f2`
+ 	link=`curl https://php.net/distributions/php-|grep $ver.tar.bz2|cut -d '"' -f2`
  	if [[ $link = "" ]]
  	then
- 		link=`curl http://php.net/downloads.php|grep $ver.tar.bz2|cut -d '"' -f2` 
- 		link=`echo "http://php.net"$link`
+ 		link=`curl https://php.net/downloads.php|grep $ver.tar.bz2|cut -d '"' -f2`
+ 		link=`echo "https://php.net"$link`
 		links=`curl $link|grep $ver.tar.bz2|cut -d '"' -f4`
 			for link in $links; do
 			wget -O /opt/php/src/bzips/php-$ver.tar.bz2 $link
@@ -98,12 +98,12 @@ sl=`echo $ver|cut -d . -f 1``echo $ver|cut -d . -f 2`
 if ! [ -f /opt/php/options ]; then
  if [[ $sl = "52" ]]
  then
-	wget --no-check-certificate https://raw.githubusercontent.com/petranikin/mgrvphp/master/options52 -O /opt/php/src/php-$ver/options.sh
+	wget --no-check-certificate https://raw.githubusercontent.com/ivanmiroshin/phpinstaller/master/options52 -O /opt/php/src/php-$ver/options.sh
 	cd /opt/php/src/php-$ver/
-	wget --no-check-certificate https://raw.githubusercontent.com/petranikin/mgrvphp/master/php52-backports-20130717.patch
+	wget --no-check-certificate https://raw.githubusercontent.com/ivanmiroshin/phpinstaller/master/php52-backports-20130717.patch
 	patch -p1 -i php52-backports-*.patch
  else
-	wget --no-check-certificate https://raw.githubusercontent.com/petranikin/mgrvphp/master/options -O /opt/php/src/php-$ver/options.sh
+	wget --no-check-certificate https://raw.githubusercontent.com/ivanmiroshin/phpinstaller/master/options -O /opt/php/src/php-$ver/options.sh
  fi
 else
  echo "/opt/php/options found"
@@ -182,7 +182,6 @@ fi
 
 echo "-----------------------------------------------"
 echo "PHP-${ver} installed in /opt/php/php-${ver}"
-echo -e "\033[0;31mDonate now:\033[0m https://anikin.pw/donate.html"
 echo "-----------------------------------------------"
 fi
 done
