@@ -28,7 +28,7 @@ if ! [ -d /opt/php ]||! [ -d /opt/php/src ]||! [ -d /opt/php/src/bzips ]; then
 	if [ "$item3" == "y" ]||[ "$item3" == "Y" ]; then
 		echo "Start the installation of packages and dependencies. Please wait..."; sleep 5
 		apt-get update 
-		apt-get install curl wget mysql-server make autoconf gcc bison libxml2 libxml2-dev libcurl4-openssl-dev pkg-config libssl-dev bzip2 libbz2-dev libjpeg-dev libpng-dev libxpm-dev libfreetype6-dev libgmp-dev libgmp3-dev libmcrypt-dev libmysqlclient-dev libpspell-dev librecode-dev libpcre3-dev libpcre++-dev libxslt1-dev libonig-dev libmcrypt-dev libreadline-dev libmhash-dev -y
+		apt-get install curl wget mysql-server make autoconf gcc bison libxml2 libxml2-dev libcurl4-openssl-dev pkg-config libssl-dev bzip2 libbz2-dev libjpeg-dev libpng-dev libxpm-dev libfreetype6-dev libgmp-dev libgmp3-dev libmcrypt-dev libmysqlclient-dev libpspell-dev librecode-dev libpcre3-dev libpcre++-dev libxslt1-dev libonig-dev libmcrypt-dev libreadline-dev libmhash-dev libkrb5-dev libsqlite3-dev -y
 		ln -s /usr/include/qdbm/depot.h /usr/include/depot.h > /dev/null 2>&1
 		ln -s /usr/lib/libc-client.a /lib/x86_64-linux-gnu/libc-client.a > /dev/null 2>&1
 		ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a > /dev/null 2>&1
